@@ -1,3 +1,3 @@
 # Local-metric-NER
-In the process of submitting a manuscript
+The code is being organized. \
 Coming soon..
