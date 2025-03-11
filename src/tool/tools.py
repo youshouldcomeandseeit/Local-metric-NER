@@ -81,63 +81,6 @@ def Correlation(label2list,data_path):
     return Cor
 
 
-# class MetricsCalculator(object):
-#     def __init__(self):
-#         super().__init__()
-#
-#     def get_evaluate_fpr(self, y_pred, y_true,margin):
-#         y_pred = y_pred.cpu().numpy()
-#         y_true = y_true.cpu().numpy()
-#         pred = []
-#         true = []
-#
-#         for b, l, start, end in zip(*np.where(y_pred < margin)):
-#
-#             pred.append((b, l, start, end))
-#         for b, l, start, end in zip(*np.where(y_true > 0)):
-#             true.append((b, l, start, end))
-#
-#         R = set(pred)
-#         T = set(true)
-#         X = len(R & T)
-#         Y = len(R)
-#         Z = len(T)
-#         print("\n","预测集：",Y,"预测正确集",X,"标签集合",Z)
-#         if Y == 0 and Z == 0:
-#             return 1,1
-#         try:
-#             precision, recall = X / Y, X / Z
-#         except ZeroDivisionError:
-#             return 0,0
-#         else:
-#             return precision, recall
-
-class single_label_MetricsCalculator(object):
-    def __init__(self):
-        super().__init__()
-
-    def get_evaluate_fpr(self, y_pred, y_true):
-
-        y_pred = y_pred.cpu().numpy()
-        y_true = y_true.cpu().numpy()
-        pred = []
-        true = []
-        for b, start, end in zip(*np.where(y_pred)):
-            pred.append((b,start, end))
-        for b, start, end in zip(*np.where(y_true)):
-            true.append((b,start, end))
-        # for b,span,l in zip(*np.where(y_pred > 0)):
-        #     pred.append((b, span ,l))
-        # for b,span,l in zip(*np.where(y_true > 0)):
-        #     true.append((b,span, l))
-
-        R = set(pred)
-        T = set(true)
-        X = len(R & T)
-        Y = len(R)
-        Z = len(T)
-        # print("\n","预测集：",Y,"预测正确集",X,"标签集合",Z)
-        return X,Y,Z
 class MetricsCalculator(object):
     def __init__(self):
         super().__init__()
